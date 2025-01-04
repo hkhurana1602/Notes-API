@@ -16,6 +16,8 @@ app.get("/", (req, res)=>{
     res.send("Notes API from HK.");
 });
 
+console.log("MongoDB URL:", process.env.MONGO_URL);
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URL)
@@ -24,6 +26,6 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("server started at port " + PORT);
     })
 })
-.catch(()=>{
-    console.log("error!");
+.catch((err)=>{
+    console.log("Error connecting to MongoDB:", err);
 })
